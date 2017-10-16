@@ -1,0 +1,7 @@
+{
+  "lambda": {
+    "role": "svg-to-png-s3-converter-executor",
+    "name": "svg-to-png-s3-converter",
+    "region": "us-east-1"
+  }
+}

@@ -13,10 +13,10 @@ module.exports = function convert(bucket, fileKey) {
 	console.log('converting', bucket, fileKey);
 	return s3.download(bucket, fileKey).then(function (downloadedPath) {
 		sourcePath = downloadedPath;
-		targetPath = path.join(os.tmpdir(), uuid.v4() + '.pdf');
-		return cpPromise.spawn(rsvgBinaryPath, [sourcePath, '-o', targetPath, '-f', 'pdf']);
+		targetPath = path.join(os.tmpdir(), uuid.v4() + '.png');
+		return cpPromise.spawn(rsvgBinaryPath, [sourcePath, '-o', targetPath, '-f', 'png']);
 	}).then(function () {
-		var uploadKey = fileKey.replace(/^in/, 'out').replace(/\.[A-z0-9]+$/, '.pdf');
+		var uploadKey = fileKey.replace(/^in/, 'out').replace(/\.[A-z0-9]+$/, '.png');
 		console.log('got to upload', targetPath, sourcePath);
 		return s3.upload(bucket, uploadKey, targetPath);
 	}).then(function () {
