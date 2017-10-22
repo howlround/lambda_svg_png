@@ -1,11 +1,11 @@
 {
   "name": "svg-to-png-s3-converter",
   "version": "1.0.0",
-  "description": "Lambda function that waits for SVG files uploaded to S3, converts them to PDF using rsvg-convert and uploads back to S3",
+  "description": "Lambda function that waits for SVG files uploaded to S3, converts them to PNG using rsvg-convert and uploads back to S3",
   "scripts": {
-    "start": "TMPDIR=/tmp AWS_PROFILE=claudia claudia create --region us-east-1 --handler main.handler --no-optional-dependencies --timeout 60 --memory 512",
-    "connect": "TMPDIR=/tmp AWS_PROFILE=claudia claudia add-s3-event-source --bucket wtm-search-share --prefix in",
-    "update": "TMPDIR=/tmp AWS_PROFILE=claudia claudia update --no-optional-dependencies"
+    "start": "TMPDIR=/tmp AWS_PROFILE=claudia claudia create --region us-east-1 --handler main.handler --no-optional-dependencies --timeout 60 --memory 512 --set-env-from-json env.json",
+    "connect": "TMPDIR=/tmp AWS_PROFILE=claudia claudia add-s3-event-source --bucket wtm-search-share-dev --prefix in",
+    "update": "TMPDIR=/tmp AWS_PROFILE=claudia claudia update --no-optional-dependencies --set-env-from-json env.json"
   },
   "author": "Gojko Adzic <gojko@gojko.com>",
   "license": "MIT",
